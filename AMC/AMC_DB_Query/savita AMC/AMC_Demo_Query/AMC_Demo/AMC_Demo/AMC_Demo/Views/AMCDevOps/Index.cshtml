@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+<div id="loader" class="loader-div">
+    <img src="~/images/Magnify.gif" class="loader-img"/>
+    <div class="loader-text">Loading Please Wait...</div>
+</div>
+<div id="timerDemo" class="Row">
+    <div class="Column">Date will be refreshed in:</div>
+    <div class="Column" id="timer_div"></div>
+    <div class="Column" >Mins</div>
+</div>
+<div id="statusTable"></div>
+
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+            getStatus();
+        });
+    </script>
+}

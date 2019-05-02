@@ -1,0 +1,4 @@
+D:\Savita\AMC_Demo\AMC_Demo\obj\Debug\netcoreapp1.1\AMC_Demo.csprojAssemblyReference.cache
+D:\Savita\AMC_Demo\AMC_Demo\obj\Debug\netcoreapp1.1\AMC_Demo.csproj.CoreCompileInputs.cache
+D:\Savita\AMC_Demo\AMC_Demo\obj\Debug\netcoreapp1.1\AMC_Demo.AssemblyInfoInputs.cache
+D:\Savita\AMC_Demo\AMC_Demo\obj\Debug\netcoreapp1.1\AMC_Demo.AssemblyInfo.cs

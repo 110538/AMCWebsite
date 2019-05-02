@@ -1,0 +1,120 @@
+﻿@using System.Data
+
+@model DataSet
+@{
+    ViewData["Title"] = "ErrorListDisplay";
+}
+
+<h2>Error List Display</h2>
+@Html.ActionLink("Go Back", "ErrorList", "Home")
+
+<html>
+<head>
+    <script src="~/js/jquery-1.11.1.min.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
+    <link href="~/css/jquery-ui.css" rel="stylesheet" />
+  
+    <script>
+        $.noConflict();
+        jQuery(document).ready(function ($) {
+            $(function () {
+                $('a.dialog').click(function () {
+                    var url = $(this).attr('href');
+                    var dialog = $('<div style="display:none"></div>').appendTo('body');
+                    dialog.load(url, {},
+                        function (responseText, textStatus, XMLHttpRequest) {
+                            dialog.dialog({
+                                close: function (event, ui) {
+                                    dialog.remove();
+                                },
+                                width: 1000,
+                                height: 500,
+                            });
+                        });
+                    return false;
+                });
+            });
+        });
+    </script>
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="row">
+
+
+            <table id="tbldata" border="1" style="border-color:#ddd; border-collapse:collapse;" class="table table-striped display" cellpadding="0" cellspacing="0" table-layout="fixed" align="center">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Error Message</th>
+                        <th>Recorded On</th>
+                        <th>Bid</th>
+                        <th>Message</th>
+                        <th>Event</th>
+                        <th>Source System</th>
+                        <th>EventId</th>
+                        <th>RequestId</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Tables.Count == 0) {<tr><td><h3>No Records Found !</h3></td></tr> }
+                    else
+                    {
+                            @foreach (DataRow row in Model.Tables[0].Rows)
+
+                            {
+                        <tr>
+                            <td>@row[0]</td>
+                            <td class="text-break"><div style="max-width:150px; min-width:150px;width:150px;overflow:hidden;">@row[1]</div></td>
+                            <td>@row[2]</td>
+                            <td>@row[3]</td>
+                            @*<td><a href="@Url.Action("MessageDetail", "Home", new { filterName = "Message", filterValue = @row[4],@class="popupLink" })">@row[4]</a></td>;*@
+                            <td class="text-break"><div style="max-width:100px; min-width:100px; max-height:50px; min-height:50px; width:100px; height:50px;overflow:hidden;">@Html.ActionLink(@row[4].ToString(), "MessageDetail", "Home", new { filterName = "Message", filterValue = @row[9] }, new { @class = "dialog" }) </div></td>
+                            <td class="text-break">
+                                <div id="targetDiv">
+                                    @*@using (Ajax.BeginForm("MessageDetail", "Home", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
+                        {
+                            @Html.Label("Enter Your Date")
+                            <br />
+                            @Html.TextBox("UserDate")
+                            <br />
+                            <button id="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
+                        }*@
+
+
+                                </div>
+                            </td>
+                            <td>@row[5]</td>
+                            <td class="text-break">@row[6]</td>
+                            <td class="text-break">@row[7]</td>
+                            <td>@row[8]</td>
+                        </tr>
+                            }
+                    }
+                </tbody>
+</table>
+        </div>
+    </div>
+</body>
+</html>
+
+
+        @*//$(function () {
+        //$('.popupLink').click(function () {
+        //$('<div id="popupfooterdiv" />').appendTo('body').dialog({
+        //close: function (event, ui) {
+        //dialog.remove();
+        //},
+        //modal: false,
+        //draggable: false,
+        //width: 500,
+        //height: 400,
+        //resizable: false,
+        ////open: function (event, ui) {
+        ////    $(‘.ui-dialog-title’).remove();
+        ////}
+        //}).load(this.href, {});
+        //return false;
+        //});
+        //});*@

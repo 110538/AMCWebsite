@@ -1,0 +1,47 @@
+﻿@using System.Data
+@model DataSet
+@{
+    ViewData["Title"] = "ErrorList";
+
+}
+@ViewBag.ErrorMessage
+<h3>Search Error List</h3>
+
+<form action="Home/ErrorList" method="post">
+    <input id="Bid" name="Bid" type="text" value="" />
+    <input id="Biddate" name="Biddate" type="date" />
+    <input type="submit" value="search" />
+</form>
+
+
+   <div><h4>Search History</h4></div>
+   
+        <table id="tbldataSearchHistory" border="1" class="display" cellpadding="0" cellspacing="0" table-layout="fixed">
+            <tr>
+                <th>Bid</th>
+                <th>Recorded On</th>
+                <th>Search Again</th>
+            </tr>
+            @foreach (DataRow row in Model.Tables[0].Rows)
+
+            {
+                <tr>
+                    <td>@row[0]</td>
+                    <td>@row[1]</td>                
+                                    
+                    <td align="center">
+                        <form action="Home/ErrorList" method="post">
+                            <input id="Bid" name="Bid" type="hidden" value="@row[0]" />
+                            <input id="Biddate" name="Biddate" type="hidden" value="@row[1]" />
+                            <input type="submit" value="search" />
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </table>
+   
+
+
+
+
